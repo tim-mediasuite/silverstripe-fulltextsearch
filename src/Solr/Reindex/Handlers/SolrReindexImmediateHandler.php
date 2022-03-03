@@ -22,7 +22,7 @@ class SolrReindexImmediateHandler extends SolrReindexBase
 {
 
     use Configurable;
-    
+
     /**
      * Path to the php binary
      * @config
@@ -76,12 +76,6 @@ class SolrReindexImmediateHandler extends SolrReindexBase
     ) {
         $indexClass = get_class($indexInstance);
         $statevar = json_encode($state);
-
-        if (strpos(PHP_OS, "WIN") !== false) {
-            $statevar = '"' . str_replace('"', '\\"', $statevar) . '"';
-        } else {
-            $statevar = "'" . $statevar . "'";
-        }
 
         $php = Environment::getEnv('SS_PHP_BIN') ?: Config::inst()->get(static::class, 'php_bin');
 
